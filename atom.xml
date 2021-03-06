@@ -6,7 +6,7 @@
   <link href="https://sxczst.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://sxczst.gitee.io/"/>
-  <updated>2021-02-24T08:37:35.132Z</updated>
+  <updated>2021-03-06T02:21:24.706Z</updated>
   <id>https://sxczst.gitee.io/</id>
   
   <author>
@@ -17,11 +17,208 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LineageOS</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/lineageos/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/lineageos/</id>
+    <published>2021-03-06T02:20:49.000Z</published>
+    <updated>2021-03-06T02:21:24.706Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;LineageOS&quot;&gt;&lt;a href=&quot;#LineageOS&quot; class=&quot;headerlink&quot; title=&quot;LineageOS&quot;&gt;&lt;/a&gt;LineageOS&lt;/h1&gt;&lt;h2 id=&quot;系统源码下载&quot;&gt;&lt;a href=&quot;#系统源码下载&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Lifecycle</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/lifecycle/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/lifecycle/</id>
+    <published>2021-03-06T02:15:36.000Z</published>
+    <updated>2021-03-06T02:18:49.297Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Lifecycle&quot;&gt;&lt;a href=&quot;#Lifecycle&quot; class=&quot;headerlink&quot; title=&quot;Lifecycle&quot;&gt;&lt;/a&gt;Lifecycle&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>EventBus</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/eventbus/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/eventbus/</id>
+    <published>2021-03-06T02:10:52.000Z</published>
+    <updated>2021-03-06T02:11:19.366Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;EventBus&quot;&gt;&lt;a href=&quot;#EventBus&quot; class=&quot;headerlink&quot; title=&quot;EventBus&quot;&gt;&lt;/a&gt;EventBus&lt;/h1&gt;&lt;pre class=&quot; language-java&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeakCanary</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/leakcanary/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/leakcanary/</id>
+    <published>2021-03-06T02:09:38.000Z</published>
+    <updated>2021-03-06T02:10:03.954Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;LeakCanary&quot;&gt;&lt;a href=&quot;#LeakCanary&quot; class=&quot;headerlink&quot; title=&quot;LeakCanary&quot;&gt;&lt;/a&gt;LeakCanary&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;参考链接:&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Jetpack-Compose</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/jetpack-compose/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/jetpack-compose/</id>
+    <published>2021-03-06T02:08:29.000Z</published>
+    <updated>2021-03-06T02:09:05.082Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Jetpack-Compose&quot;&gt;&lt;a href=&quot;#Jetpack-Compose&quot; class=&quot;headerlink&quot; title=&quot;Jetpack Compose&quot;&gt;&lt;/a&gt;Jetpack</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>RxJava</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/rxjava/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/rxjava/</id>
+    <published>2021-03-06T02:06:33.000Z</published>
+    <updated>2021-03-06T02:07:24.015Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;RxJava&quot;&gt;&lt;a href=&quot;#RxJava&quot; class=&quot;headerlink&quot; title=&quot;RxJava&quot;&gt;&lt;/a&gt;RxJava&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;参考链接&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Long-connection-technology</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/long-connection-technology/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/long-connection-technology/</id>
+    <published>2021-03-06T02:04:17.000Z</published>
+    <updated>2021-03-06T02:05:18.540Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HTML5-WebSocket-Tencent-Mars&quot;&gt;&lt;a href=&quot;#HTML5-WebSocket-Tencent-Mars&quot; class=&quot;headerlink&quot; title=&quot;HTML5 WebSocket|Tencent</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Black-technology-to-keep-alive</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/black-technology-to-keep-alive/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/black-technology-to-keep-alive/</id>
+    <published>2021-03-06T02:02:06.000Z</published>
+    <updated>2021-03-06T02:04:55.839Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;黑科技保活&quot;&gt;&lt;a href=&quot;#黑科技保活&quot; class=&quot;headerlink&quot; title=&quot;黑科技保活&quot;&gt;&lt;/a&gt;黑科技保活&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;参考链接&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Design-Pattern</title>
+    <link href="https://sxczst.gitee.io/2021/03/06/design-pattern/"/>
+    <id>https://sxczst.gitee.io/2021/03/06/design-pattern/</id>
+    <published>2021-03-06T01:11:16.000Z</published>
+    <updated>2021-03-06T01:19:56.746Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;设计模式&quot;&gt;&lt;a href=&quot;#设计模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式&quot;&gt;&lt;/a&gt;设计模式&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;参考链接&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Powered by Hexo</title>
     <link href="https://sxczst.gitee.io/2021/02/24/powered-by-hexo/"/>
     <id>https://sxczst.gitee.io/2021/02/24/powered-by-hexo/</id>
     <published>2021-02-24T08:33:25.000Z</published>
-    <updated>2021-02-24T08:37:35.132Z</updated>
+    <updated>2021-03-06T01:27:41.910Z</updated>
     
     
     

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Powered by Hexo, Hexo">
+    <meta name="keywords" content="Jetpack-Compose, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Powered by Hexo | Hexo</title>
+    <title>Jetpack-Compose | Hexo</title>
     <link rel="icon" type="image/png" href="/medias/ic_launcher_round.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -253,7 +253,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Powered by Hexo</h1>
+                    <h1 class="description center-align post-title">Jetpack-Compose</h1>
                 </div>
             </div>
         </div>
@@ -367,13 +367,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Hexo-Setup/">
-                                <span class="chip bg-color">Hexo Setup</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -385,7 +381,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-24
+                    2021-03-06
                 </div>
                 
 
@@ -406,7 +402,160 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="Jetpack-Compose"><a href="#Jetpack-Compose" class="headerlink" title="Jetpack Compose"></a>Jetpack Compose</h1><p><strong>参考链接</strong></p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/compose/setup">将 Android Studio 与 Jetpack Compose 配合使用</a></p>
+<h2 id="将-Jetpack-Compose-添加到现有项目中"><a href="#将-Jetpack-Compose-添加到现有项目中" class="headerlink" title="将 Jetpack Compose 添加到现有项目中"></a>将 Jetpack Compose 添加到现有项目中</h2><h3 id="配置-Kotlin"><a href="#配置-Kotlin" class="headerlink" title="配置 Kotlin"></a>配置 Kotlin</h3><h4 id="确保您在项目中使用的是-Kotlin-1-4-21-或更高版本："><a href="#确保您在项目中使用的是-Kotlin-1-4-21-或更高版本：" class="headerlink" title="确保您在项目中使用的是 Kotlin 1.4.21 或更高版本："></a>确保您在项目中使用的是 Kotlin 1.4.21 或更高版本：</h4><pre class=" language-groovy"><code class="language-groovy">buildscript <span class="token punctuation">{</span>
+    ext<span class="token operator">.</span>kotlin_version <span class="token operator">=</span> <span class="token string">"1.4.30"</span>
+    <span class="token punctuation">...</span>
+    dependencies <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+        classpath <span class="token string">"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-groovy"><code class="language-groovy">plugins <span class="token punctuation">{</span>
+    id <span class="token string">'com.android.application'</span>
+    id <span class="token string">'kotlin-android'</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="配置-Gradle"><a href="#配置-Gradle" class="headerlink" title="配置 Gradle"></a>配置 Gradle</h3><h4 id="您需要将应用的最低-API-级别设置为-21-或更高级别，并在应用的-build-gradle-文件中启用-Jetpack-Compose，如下所示。另外还要设置-Kotlin-编译器插件的版本。"><a href="#您需要将应用的最低-API-级别设置为-21-或更高级别，并在应用的-build-gradle-文件中启用-Jetpack-Compose，如下所示。另外还要设置-Kotlin-编译器插件的版本。" class="headerlink" title="您需要将应用的最低 API 级别设置为 21 或更高级别，并在应用的 build.gradle 文件中启用 Jetpack Compose，如下所示。另外还要设置 Kotlin 编译器插件的版本。"></a>您需要将应用的最低 API 级别设置为 21 或更高级别，并在应用的 build.gradle 文件中启用 Jetpack Compose，如下所示。另外还要设置 Kotlin 编译器插件的版本。</h4><pre class=" language-groovy"><code class="language-groovy">android <span class="token punctuation">{</span>
+    <span class="token punctuation">...</span>
+    defaultConfig <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+        minSdkVersion <span class="token number">21</span>
+    <span class="token punctuation">}</span>
+
+    buildFeatures <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 启用 Jetpack Compose</span>
+        compose <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    
+    compileOptions <span class="token punctuation">{</span>
+        sourceCompatibility JavaVersion<span class="token operator">.</span>VERSION_1_8
+        targetCompatibility JavaVersion<span class="token operator">.</span>VERSION_1_8
+    <span class="token punctuation">}</span>
+
+    kotlinOptions <span class="token punctuation">{</span>
+        jvmTarget <span class="token operator">=</span> <span class="token string">"1.8"</span>
+        useIR <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+
+    composeOptions <span class="token punctuation">{</span>
+        kotlinCompilerVersion rootProject<span class="token operator">.</span>ext<span class="token operator">.</span>kotlin_version
+        kotlinCompilerExtensionVersion <span class="token string">'1.0.0-beta01'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="添加-Jetpack-Compose-工具包依赖项"><a href="#添加-Jetpack-Compose-工具包依赖项" class="headerlink" title="添加 Jetpack Compose 工具包依赖项"></a>添加 Jetpack Compose 工具包依赖项</h3><h4 id="在应用的-build-gradle-文件中添加-Jetpack-Compose-工具包依赖项"><a href="#在应用的-build-gradle-文件中添加-Jetpack-Compose-工具包依赖项" class="headerlink" title="在应用的 build.gradle 文件中添加 Jetpack Compose 工具包依赖项"></a>在应用的 build.gradle 文件中添加 Jetpack Compose 工具包依赖项</h4><pre class=" language-groovy"><code class="language-groovy">dependencies <span class="token punctuation">{</span>
+    implementation <span class="token string">'androidx.compose.ui:ui:1.0.0-beta01'</span>
+    <span class="token comment" spellcheck="true">// Tooling support (Previews, etc.)</span>
+    implementation <span class="token string">'androidx.compose.ui:ui-tooling:1.0.0-beta01'</span>
+    <span class="token comment" spellcheck="true">// Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)</span>
+    implementation <span class="token string">'androidx.compose.foundation:foundation:1.0.0-beta01'</span>
+    <span class="token comment" spellcheck="true">// Material Design</span>
+    implementation <span class="token string">'androidx.compose.material:material:1.0.0-beta01'</span>
+    <span class="token comment" spellcheck="true">// Material design icons</span>
+    implementation <span class="token string">'androidx.compose.material:material-icons-core:1.0.0-beta01'</span>
+    implementation <span class="token string">'androidx.compose.material:material-icons-extended:1.0.0-beta01'</span>
+    <span class="token comment" spellcheck="true">// Integration with observables</span>
+    implementation <span class="token string">'androidx.compose.runtime:runtime-livedata:1.0.0-beta01'</span>
+    implementation <span class="token string">'androidx.compose.runtime:runtime-rxjava2:1.0.0-beta01'</span>
+
+    <span class="token comment" spellcheck="true">// UI Tests</span>
+    androidTestImplementation <span class="token string">'androidx.compose.ui:ui-test-junit4:1.0.0-beta01'</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="布局预览"><a href="#布局预览" class="headerlink" title="布局预览"></a>布局预览</h2><ul>
+<li><p>创建基本布局预览</p>
+</li>
+<li><p>将预览部署到设备</p>
+</li>
+<li><p>互动式预览</p>
+</li>
+</ul>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><ul>
+<li><p>可组合函数是用于描述界面中某一部分的函数。</p>
+</li>
+<li><p>Compose 的标准布局组件(元素)</p>
+<ul>
+<li>每个基本布局都定义了自己的重心设置</li>
+<li>Column</li>
+<li>Row</li>
+<li>Box</li>
+<li>ScrollableColumn</li>
+<li>ScrollableRow</li>
+<li>LazyColumnFor</li>
+<li>LazyRowFor </li>
+</ul>
+</li>
+<li><p>修饰符</p>
+<ul>
+<li>Modifier</li>
+<li>修饰符函数的顺序非常重要</li>
+</ul>
+</li>
+<li><p>内置 Material 组件</p>
+<ul>
+<li>插槽</li>
+<li>Scaffold</li>
+<li>TopAppBar</li>
+<li>BottomAppBar</li>
+<li>FloatingActionButton</li>
+<li>Drawer</li>
+</ul>
+</li>
+<li><p>ConstraintLayout</p>
+<ul>
+<li>在实现对齐要求比较复杂的较大布局时，ConstraintLayout 很有用。</li>
+<li>引用：createRefs() 或 createRefFor() 。parent 是一个现有的引用</li>
+<li>constrainAs()</li>
+<li>linkTo()</li>
+<li>Decoupled API</li>
+<li>ConstraintSet</li>
+</ul>
+</li>
+<li><p>自定义布局</p>
+<ul>
+<li>使用布局修饰符<ul>
+<li>measurable.measure(constraints)</li>
+<li>layout(width, height)</li>
+<li>placeRelative(x, y)</li>
+</ul>
+</li>
+<li>创建自定义布局<ul>
+<li>Layout 可组合项</li>
+</ul>
+</li>
+<li>布局方向<ul>
+<li>LayoutDirection</li>
+<li>place(x, y)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Compose-中的主题"><a href="#Compose-中的主题" class="headerlink" title="Compose 中的主题"></a>Compose 中的主题</h2><ul>
+<li>应用范围的主题<ul>
+<li>Material Theming</li>
+<li>颜色<ul>
+<li>darkColors</li>
+<li>lightColors</li>
+<li>主题颜色&amp;表面颜色&amp;内容颜色</li>
+<li>内容 Alpha 值 AmbientContentAlpha</li>
+<li>深色主题 MaterialTheme.colors.isLight</li>
+<li>扩展 Material 颜色</li>
+</ul>
+</li>
+<li>字体排版<ul>
+<li>Typography</li>
+<li>TextStyle</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -432,7 +581,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sxczst.gitee.io/2021/02/24/powered-by-hexo/">https://sxczst.gitee.io/2021/02/24/powered-by-hexo/</a>
+                    <a href="https://sxczst.gitee.io/2021/03/06/jetpack-compose/">https://sxczst.gitee.io/2021/03/06/jetpack-compose/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -469,11 +618,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Hexo-Setup/">
-                                    <span class="chip bg-color">Hexo Setup</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -645,13 +790,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/06/design-pattern/">
+                <a href="/2021/03/06/leakcanary/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Design-Pattern">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LeakCanary">
                         
-                        <span class="card-title">Design-Pattern</span>
+                        <span class="card-title">LeakCanary</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -682,13 +827,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/02/24/hello-world/">
+                <a href="/2021/03/06/rxjava/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="RxJava">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">RxJava</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -699,7 +844,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-06
                             </span>
                         <span class="publish-author">
                             

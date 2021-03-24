@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LineageOS, Hexo">
+    <meta name="keywords" content="C++, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LineageOS | Hexo</title>
+    <title>C++ | Hexo</title>
     <link rel="icon" type="image/png" href="/medias/ic_launcher_round.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -248,12 +248,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LineageOS</h1>
+                    <h1 class="description center-align post-title">C++</h1>
                 </div>
             </div>
         </div>
@@ -381,7 +381,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-06
+                    2021-03-16
                 </div>
                 
 
@@ -402,39 +402,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="LineageOS"><a href="#LineageOS" class="headerlink" title="LineageOS"></a>LineageOS</h1><h2 id="系统源码下载"><a href="#系统源码下载" class="headerlink" title="系统源码下载"></a>系统源码下载</h2><h3 id="下载-repo-工具"><a href="#下载-repo-工具" class="headerlink" title="下载 repo 工具"></a>下载 repo 工具</h3><pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> ~/bin
+                <p><strong>参考链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=37655">C++ Primer（中文版）（第5版）</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7209840d845c9">C++ Primer Plus 第6版 中文版</a></p>
+<h2 id="第一章-开始"><a href="#第一章-开始" class="headerlink" title="第一章 开始"></a>第一章 开始</h2><pre class=" language-c++"><code class="language-c++">#include <iostream>
+
+int main() {
+    std::cout << "Enter two numbers:" << std::endl;
+    int v1 = 0, v2 = 0;
+    std::cin >> v1 >> v2;
+    std::cout << "The sum of " << v1 << " and " << v2 << " is " << v1 + v2 << std::endl;
+    return 0;
+}
 </code></pre>
-<pre class=" language-bash"><code class="language-bash">$ PATH<span class="token operator">=</span>~/bin:<span class="token variable">$PATH</span>
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo <span class="token operator">></span> ~/bin/repo
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">chmod</span> a+x ~/bin/repo
-</code></pre>
-<h3 id="建立工作目录"><a href="#建立工作目录" class="headerlink" title="建立工作目录"></a>建立工作目录</h3><pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> lineageOS
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> lineageOS
-</code></pre>
-<h3 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h3><pre class=" language-bash"><code class="language-bash">$ <span class="token function">export</span> REPO_URL<span class="token operator">=</span><span class="token string">'https://mirrors.tuna.tsinghua.edu.cn/git/git-repo'</span>
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> config --global user.name <span class="token string">"Your Name"</span>
-$ <span class="token function">git</span> config --global user.email <span class="token string">"you@example.com"</span>
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> config --global url.https://mirrors.tuna.tsinghua.edu.cn/git/AOSP/.insteadof https://android.googlesource.com
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/android.git -b lineage-17.1
-</code></pre>
-<h3 id="同步源码树"><a href="#同步源码树" class="headerlink" title="同步源码树"></a>同步源码树</h3><pre class=" language-bash"><code class="language-bash">$ repo <span class="token function">sync</span>
-</code></pre>
-<h2 id="Linux内核源码下载"><a href="#Linux内核源码下载" class="headerlink" title="Linux内核源码下载"></a>Linux内核源码下载</h2><h3 id="建立工作目录-1"><a href="#建立工作目录-1" class="headerlink" title="建立工作目录"></a>建立工作目录</h3><pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> kernel
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> kernel
-</code></pre>
-<h3 id="下载经过LineageOS适配的Linux内核源代码"><a href="#下载经过LineageOS适配的Linux内核源代码" class="headerlink" title="下载经过LineageOS适配的Linux内核源代码"></a>下载经过LineageOS适配的Linux内核源代码</h3><h2 id="系统源码编译"><a href="#系统源码编译" class="headerlink" title="系统源码编译"></a>系统源码编译</h2><p><strong>参考链接</strong></p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/">清华大学开源软件镜像站-Android 镜像使用帮助</a></p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/">清华大学开源软件镜像站-lineageOS 源代码镜像使用帮助</a></p>
-<p><a target="_blank" rel="noopener" href="https://weread.qq.com/web/reader/aac321e07159a768aac1942">Android深度探索（卷2）：系统应用源代码分析与ROM定制</a></p>
-<p><a target="_blank" rel="noopener" href="https://source.android.com/setup/downloading">Android 开源项目 下载源代码</a></p>
 
                 
             </div>
@@ -461,7 +441,7 @@ $ <span class="token function">git</span> config --global user.email <span class
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sxczst.gitee.io/2021/03/06/lineageos/">https://sxczst.gitee.io/2021/03/06/lineageos/</a>
+                    <a href="https://sxczst.gitee.io/2021/03/16/c/">https://sxczst.gitee.io/2021/03/16/c/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -666,54 +646,18 @@ $ <span class="token function">git</span> config --global user.email <span class
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/03/12/glide/">
+                <a href="/2021/03/16/c/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Glide">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="C++">
                         
-                        <span class="card-title">Glide</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-12
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            尚铁
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/03/06/lifecycle/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Lifecycle">
-                        
-                        <span class="card-title">Lifecycle</span>
+                        <span class="card-title">C++</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -724,7 +668,45 @@ $ <span class="token function">git</span> config --global user.email <span class
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            尚铁
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/15/camera/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Camera">
+                        
+                        <span class="card-title">Camera</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-15
                             </span>
                         <span class="publish-author">
                             

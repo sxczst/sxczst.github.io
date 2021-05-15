@@ -555,7 +555,23 @@
 </ul>
 </li>
 </ul>
-
+<hr>
+<h1 id="Android-Study-Jam-课程地址"><a href="#Android-Study-Jam-课程地址" class="headerlink" title="Android Study Jam 课程地址"></a>Android Study Jam <a target="_blank" rel="noopener" href="https://developer.android.google.cn/courses/pathways/compose">课程地址</a></h1><h2 id="Jetpack-Compose-基础知识"><a href="#Jetpack-Compose-基础知识" class="headerlink" title="Jetpack Compose 基础知识"></a>Jetpack Compose 基础知识</h2><p>Jetpack Compose 是用于构建原生 Android 界面的新工具包。Jetpack Compose 使用更少的代码、强大的工具和直观的 Kotlin API 简化并加快了 Android 上的界面开发。</p>
+<h3 id="可组合函数"><a href="#可组合函数" class="headerlink" title="可组合函数"></a>可组合函数</h3><h3 id="布局-1"><a href="#布局-1" class="headerlink" title="布局"></a>布局</h3><h3 id="Material-Design"><a href="#Material-Design" class="headerlink" title="Material Design"></a>Material Design</h3><h2 id="Compose-Beta-Overview"><a href="#Compose-Beta-Overview" class="headerlink" title="Compose Beta Overview"></a>Compose Beta Overview</h2><h2 id="Compose-编程思想"><a href="#Compose-编程思想" class="headerlink" title="Compose 编程思想"></a>Compose 编程思想</h2><h3 id="声明性编程范式"><a href="#声明性编程范式" class="headerlink" title="声明性编程范式"></a>声明性编程范式</h3><p>工作原理是在概念上从头开始重新生成整个屏幕，然后仅执行必要的更改。此方法可避免手动更新有状态视图层次结构的复杂性。Compose 是一个声明性界面框架。</p>
+<h3 id="简单的可组合函数"><a href="#简单的可组合函数" class="headerlink" title="简单的可组合函数"></a>简单的可组合函数</h3><p>此函数不会返回任何内容。发出界面的 Compose 函数不需要返回任何内容，因为它们描述所需的屏幕状态，而不是构造界面微件。</p>
+<h3 id="声明性范式转变"><a href="#声明性范式转变" class="headerlink" title="声明性范式转变"></a>声明性范式转变</h3><p>在 Compose 的声明性方法中，微件相对无状态，并且不提供 setter 或 getter 函数。实际上，微件不会以对象形式提供。您可以通过调用带有不同参数的同一可组合函数来更新界面。</p>
+<p>当用户与界面交互时，界面会发起 onClick 等事件。这些事件应通知应用逻辑，应用逻辑随后可以改变应用的状态。当状态发生变化时，系统会使用新数据再次调用可组合函数。这会导致重新绘制界面元素，此过程称为“重组”。</p>
+<h3 id="动态内容"><a href="#动态内容" class="headerlink" title="动态内容"></a>动态内容</h3><p>可以像其他任何 Kotlin 代码一样动态。</p>
+<h3 id="重组"><a href="#重组" class="headerlink" title="重组"></a>重组</h3><p>在 Compose 中，您可以使用新数据再次调用可组合函数。这样做会导致函数进行重组 – 系统会根据需要使用新数据重新绘制函数发出的微件。</p>
+<p>重组是指在输入更改时再次调用可组合函数的过程。通过跳过所有未更改参数的函数或 lambda，Compose 可以高效地重组。</p>
+<p>附带效应是指对应用的其余部分可见的任何更改。</p>
+<ul>
+<li>写入共享对象的属性</li>
+<li>更新 ViewModel 中的可观察项</li>
+<li>更新共享偏好设置</li>
+</ul>
+<h4 id="可组合函数可以按任何顺序执行"><a href="#可组合函数可以按任何顺序执行" class="headerlink" title="可组合函数可以按任何顺序执行"></a>可组合函数可以按任何顺序执行</h4><h4 id="可组合函数可以并行运行"><a href="#可组合函数可以并行运行" class="headerlink" title="可组合函数可以并行运行"></a>可组合函数可以并行运行</h4><p>可组合函数可能会在后台线程池中执行。如果某个可组合函数对 ViewModel 调用一个函数，则 Compose 可能会同时从多个线程调用该函数。</p>
+<h4 id="重组会跳过尽可能多的内容"><a href="#重组会跳过尽可能多的内容" class="headerlink" title="重组会跳过尽可能多的内容"></a>重组会跳过尽可能多的内容</h4>
                 
             </div>
             <hr/>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Camera, SXCZST">
+    <meta name="keywords" content="LiveData, SXCZST">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Camera | SXCZST</title>
+    <title>LiveData | SXCZST</title>
     <link rel="icon" type="image/png" href="/medias/ic_launcher_round.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -248,12 +248,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Camera</h1>
+                    <h1 class="description center-align post-title">LiveData</h1>
                 </div>
             </div>
         </div>
@@ -381,7 +381,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-15
+                    2022-01-26
                 </div>
                 
 
@@ -402,24 +402,182 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>参考链接</strong></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903534610087943">Android平台Camera开发实践指南</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/matrix_laboratory/article/details/82871247">Android Camera高级特性——手动对焦</a></p>
-<p>定义统一接口，这个接口一般需要定义以下功能：</p>
-<ul>
-<li>打开相机</li>
-<li>关闭相机</li>
-<li>开启预览</li>
-<li>关闭预览</li>
-<li>拍照</li>
-<li>开始视频录制</li>
-<li>结束视频录制</li>
-</ul>
-<p>功能和 UI 分离</p>
-<ul>
-<li>利用 Fragment</li>
-</ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="手动对焦"><a href="#手动对焦" class="headerlink" title="手动对焦"></a>手动对焦</h3>
+                <h2 id="LiveData-一个简单易用的，具备感知生命周期能力的观察者模式。"><a href="#LiveData-一个简单易用的，具备感知生命周期能力的观察者模式。" class="headerlink" title="LiveData - 一个简单易用的，具备感知生命周期能力的观察者模式。"></a>LiveData - 一个简单易用的，具备感知生命周期能力的观察者模式。</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">LiveData</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+    
+    <span class="token comment" spellcheck="true">/**
+     * 把 Activity 或 Fragment 作为 LifecycleOwner 参数传递进去。
+     * Activity 和 Fragment 默认会实现 LifecycleOwner 接口。
+     */</span>
+    <span class="token annotation punctuation">@MainThread</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">observe</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> LifecycleOwner owner<span class="token punctuation">,</span> <span class="token annotation punctuation">@NonNull</span> Observer<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> observer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">assertMainThread</span><span class="token punctuation">(</span><span class="token string">"observe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// Lifecycle</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>owner<span class="token punctuation">.</span><span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCurrentState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> DESTROYED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// ignore，生命周期状态已经 OnDestroy 的话，将直接返回。</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 将 LifecycleOwner 和 Observer 保存起来。</span>
+        LifecycleBoundObserver wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LifecycleBoundObserver</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 将 Observer 和 wrapper 分别作为 key 和 value 存入 Map 中。</span>
+        ObserverWrapper existing <span class="token operator">=</span> mObservers<span class="token punctuation">.</span><span class="token function">putIfAbsent</span><span class="token punctuation">(</span>observer<span class="token punctuation">,</span> wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>existing <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>existing<span class="token punctuation">.</span><span class="token function">isAttachedTo</span><span class="token punctuation">(</span>owner<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"Cannot add the same observer"</span>
+                    <span class="token operator">+</span> <span class="token string">" with different lifecycles"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>existing <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 将 LifecycleBoundObserver 作为 owner 生命周期的观察者。</span>
+        owner<span class="token punctuation">.</span><span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">LifecycleBoundObserver</span> <span class="token keyword">extends</span> <span class="token class-name">ObserverWrapper</span> <span class="token keyword">implements</span> <span class="token class-name">LifecycleEventObserver</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@NonNull</span>
+    <span class="token keyword">final</span> LifecycleOwner mOwner<span class="token punctuation">;</span>
+
+    <span class="token function">LifecycleBoundObserver</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> LifecycleOwner owner<span class="token punctuation">,</span> Observer<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> observer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mOwner <span class="token operator">=</span> owner<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">boolean</span> <span class="token function">shouldBeActive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mOwner<span class="token punctuation">.</span><span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCurrentState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isAtLeast</span><span class="token punctuation">(</span>STARTED<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onStateChanged</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> LifecycleOwner source<span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@NonNull</span> Lifecycle<span class="token punctuation">.</span>Event event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Lifecycle<span class="token punctuation">.</span>State currentState <span class="token operator">=</span> mOwner<span class="token punctuation">.</span><span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCurrentState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>currentState <span class="token operator">==</span> DESTROYED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">removeObserver</span><span class="token punctuation">(</span>mObserver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Lifecycle<span class="token punctuation">.</span>State prevState <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>prevState <span class="token operator">!=</span> currentState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            prevState <span class="token operator">=</span> currentState<span class="token punctuation">;</span>
+            <span class="token function">activeStateChanged</span><span class="token punctuation">(</span><span class="token function">shouldBeActive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            currentState <span class="token operator">=</span> mOwner<span class="token punctuation">.</span><span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCurrentState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">boolean</span> <span class="token function">isAttachedTo</span><span class="token punctuation">(</span>LifecycleOwner owner<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mOwner <span class="token operator">==</span> owner<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">void</span> <span class="token function">detachObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mOwner<span class="token punctuation">.</span><span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeObserver</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ObserverWrapper</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> Observer<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> mObserver<span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> mActive<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> mLastVersion <span class="token operator">=</span> START_VERSION<span class="token punctuation">;</span>
+
+    <span class="token function">ObserverWrapper</span><span class="token punctuation">(</span>Observer<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> observer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mObserver <span class="token operator">=</span> observer<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">abstract</span> <span class="token keyword">boolean</span> <span class="token function">shouldBeActive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">boolean</span> <span class="token function">isAttachedTo</span><span class="token punctuation">(</span>LifecycleOwner owner<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">detachObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">activeStateChanged</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> newActive<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>newActive <span class="token operator">==</span> mActive<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// immediately set active state, so we'd never dispatch anything to inactive</span>
+        <span class="token comment" spellcheck="true">// owner</span>
+        mActive <span class="token operator">=</span> newActive<span class="token punctuation">;</span>
+        <span class="token function">changeActiveCounter</span><span class="token punctuation">(</span>mActive <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mActive<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">dispatchingValue</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">LifecycleEventObserver</span> <span class="token keyword">extends</span> <span class="token class-name">LifecycleObserver</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * Called when a state transition event happens.
+     *
+     * @param source The source of the event
+     * @param event The event
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">onStateChanged</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> LifecycleOwner source<span class="token punctuation">,</span> <span class="token annotation punctuation">@NonNull</span> Lifecycle<span class="token punctuation">.</span>Event event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 数据更新时，通知观察者。
+ */</span>
+<span class="token annotation punctuation">@MainThread</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">setValue</span><span class="token punctuation">(</span>T value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assertMainThread</span><span class="token punctuation">(</span><span class="token string">"setValue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mVersion<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 将要更新的数据赋值给 mData。</span>
+    mData <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 将数据分发给各个观察者。</span>
+    <span class="token function">dispatchingValue</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">dispatchingValue</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> ObserverWrapper initiator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>mDispatchingValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mDispatchInvalidated <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    mDispatchingValue <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">do</span> <span class="token punctuation">{</span>
+        mDispatchInvalidated <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>initiator <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// initiator 不等于 null，仅仅通知传入的观察者。</span>
+            <span class="token function">considerNotify</span><span class="token punctuation">(</span>initiator<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            initiator <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// initiator 等于 null，将会通知所有的观察者。</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Iterator<span class="token operator">&lt;</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>Observer<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span><span class="token punctuation">,</span> ObserverWrapper<span class="token operator">>></span> iterator <span class="token operator">=</span>
+                    mObservers<span class="token punctuation">.</span><span class="token function">iteratorWithAdditions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// ObserverWrapper is LifecycleBoundObserver</span>
+                <span class="token function">considerNotify</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>mDispatchInvalidated<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>mDispatchInvalidated<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mDispatchingValue <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">considerNotify</span><span class="token punctuation">(</span>ObserverWrapper observer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>observer<span class="token punctuation">.</span>mActive<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// Check latest state b4 dispatch. Maybe it changed state but we didn't get the event yet.</span>
+    <span class="token comment" spellcheck="true">//</span>
+    <span class="token comment" spellcheck="true">// we still first check observer.active to keep it as the entrance for events. So even if</span>
+    <span class="token comment" spellcheck="true">// the observer moved to an active state, if we've not received that event, we better not</span>
+    <span class="token comment" spellcheck="true">// notify for a more predictable notification order.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>observer<span class="token punctuation">.</span><span class="token function">shouldBeActive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果观察者不是活跃状态，将不会通知此观察者</span>
+        observer<span class="token punctuation">.</span><span class="token function">activeStateChanged</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>observer<span class="token punctuation">.</span>mLastVersion <span class="token operator">>=</span> mVersion<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    observer<span class="token punctuation">.</span>mLastVersion <span class="token operator">=</span> mVersion<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 将保存的数据 mData 传入，也就实现了更新。</span>
+    observer<span class="token punctuation">.</span>mObserver<span class="token punctuation">.</span><span class="token function">onChanged</span><span class="token punctuation">(</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span> mData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -445,7 +603,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sxczst.gitee.io/2021/03/15/camera/">https://sxczst.gitee.io/2021/03/15/camera/</a>
+                    <a href="https://sxczst.gitee.io/2022/01/26/livedata/">https://sxczst.gitee.io/2022/01/26/livedata/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -650,54 +808,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/03/16/c/">
+                <a href="/2022/01/26/livedata/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="C++">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="LiveData">
                         
-                        <span class="card-title">C++</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            尚铁
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/03/12/glide/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Glide">
-                        
-                        <span class="card-title">Glide</span>
+                        <span class="card-title">LiveData</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -708,7 +830,45 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            尚铁
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/30/hello-world/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        
+                        <span class="card-title">Hello World</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-30
                             </span>
                         <span class="publish-author">
                             

@@ -6,7 +6,7 @@
   <link href="https://sxczst.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://sxczst.gitee.io/"/>
-  <updated>2021-09-30T12:11:07.771Z</updated>
+  <updated>2022-01-26T08:09:32.430Z</updated>
   <id>https://sxczst.gitee.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LiveData</title>
+    <link href="https://sxczst.gitee.io/2022/01/26/livedata/"/>
+    <id>https://sxczst.gitee.io/2022/01/26/livedata/</id>
+    <published>2022-01-26T05:28:24.000Z</published>
+    <updated>2022-01-26T08:09:32.430Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;LiveData-一个简单易用的，具备感知生命周期能力的观察者模式。&quot;&gt;&lt;a href=&quot;#LiveData-一个简单易用的，具备感知生命周期能力的观察者模式。&quot; class=&quot;headerlink&quot; title=&quot;LiveData -</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -151,7 +172,7 @@
     <link href="https://sxczst.gitee.io/2021/03/06/lifecycle/"/>
     <id>https://sxczst.gitee.io/2021/03/06/lifecycle/</id>
     <published>2021-03-06T02:15:36.000Z</published>
-    <updated>2021-09-30T12:11:07.767Z</updated>
+    <updated>2022-01-26T08:14:43.798Z</updated>
     
     
       

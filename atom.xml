@@ -6,7 +6,7 @@
   <link href="https://sxczst.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://sxczst.gitee.io/"/>
-  <updated>2022-01-26T08:09:32.430Z</updated>
+  <updated>2022-01-28T04:15:05.251Z</updated>
   <id>https://sxczst.gitee.io/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DataBinding</title>
+    <link href="https://sxczst.gitee.io/2022/01/28/databinding/"/>
+    <id>https://sxczst.gitee.io/2022/01/28/databinding/</id>
+    <published>2022-01-28T01:49:46.000Z</published>
+    <updated>2022-01-28T04:15:05.251Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;gradle-6.5-all&lt;/p&gt;
+&lt;p&gt;com.android.tools.build:gradle:4.1.2&lt;/p&gt;
+&lt;pre class=&quot; language-groovy&quot;&gt;&lt;code class=&quot;language-groovy&quot;&gt;android &lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ViewModel</title>
+    <link href="https://sxczst.gitee.io/2022/01/27/viewmodel/"/>
+    <id>https://sxczst.gitee.io/2022/01/27/viewmodel/</id>
+    <published>2022-01-27T01:20:24.000Z</published>
+    <updated>2022-01-27T07:05:06.144Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot; language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot; spellcheck=&quot;true&quot;&gt;/**
+ * 抽象类
+ */&lt;/span&gt;
+&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>LiveData</title>

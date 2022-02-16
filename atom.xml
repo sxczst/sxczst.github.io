@@ -6,7 +6,7 @@
   <link href="https://sxczst.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://sxczst.gitee.io/"/>
-  <updated>2022-01-29T05:38:51.241Z</updated>
+  <updated>2022-02-16T06:12:17.812Z</updated>
   <id>https://sxczst.gitee.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EventDispatch</title>
+    <link href="https://sxczst.gitee.io/2022/02/16/eventdispatch/"/>
+    <id>https://sxczst.gitee.io/2022/02/16/eventdispatch/</id>
+    <published>2022-02-16T06:10:19.000Z</published>
+    <updated>2022-02-16T06:12:17.812Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Event-Dispatch&quot;&gt;&lt;a href=&quot;#Event-Dispatch&quot; class=&quot;headerlink&quot; title=&quot;Event Dispatch&quot;&gt;&lt;/a&gt;Event Dispatch&lt;/h1&gt;&lt;pre class=&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Navigation</title>
@@ -42,7 +63,7 @@
     <link href="https://sxczst.gitee.io/2022/01/28/databinding/"/>
     <id>https://sxczst.gitee.io/2022/01/28/databinding/</id>
     <published>2022-01-28T01:49:46.000Z</published>
-    <updated>2022-01-28T04:15:05.251Z</updated>
+    <updated>2022-02-14T02:45:55.623Z</updated>
     
     
       
